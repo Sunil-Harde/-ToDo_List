@@ -90,7 +90,6 @@ function Login(props) {
                 </div>
             </div>
 
-            <Home login={value.email} />
 
         </div>
     )
