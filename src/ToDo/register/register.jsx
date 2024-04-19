@@ -41,7 +41,7 @@ function Register() {
         <div>
             <Nav1 />
             <div className='container-fluid  d-flex flex-column justify-content-center align-items-center min-vh-100 ' style={{ backgroundImage: "url(https://cdn.pixabay.com/photo/2014/12/16/16/19/smartphone-570507_1280.jpg)", backgroundSize: "cover", borderRightWidth: 100, backgroundPositionX: "center" }}>
-                <div className='card  shadow-lg form '>
+                <div className='card mb-sm-3 shadow-lg form '>
                     <div className='card-header text-center'>
                         <h2>Register</h2>
                     </div>
