@@ -1,0 +1,28 @@
+.main1{
+    background-image:url(https://img.freepik.com/free-photo/top-view-notebook-with-checklist-desk_23-2148938754.jpg?t=st=1709926091~exp=1709929691~hmac=1fb079d60af751e069955f6200a8fa6b24f97de7074f646c85288b24e693f8de&w=740);
+    background-size:cover;
+}
+
+.form{
+    background-color:transparent ;
+    backdrop-filter: blur(10px);
+    transition: all 0.5s ease-in;
+}
+
+button{
+    margin-top: 35px;
+}
+
+@media (max-width:770px) {
+    
+    .text{
+        display: none;
+    }    
+    .text2{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: rgb(255, 0, 76) ;
+    }
+}

@@ -1,0 +1,19 @@
+.main{
+    background-image:url(https://cdn.pixabay.com/photo/2021/03/28/13/00/lists-6131213_960_720.jpg);
+    background-size: cover;
+}
+
+.form{
+    background-color:transparent ;
+    backdrop-filter: blur(15px);
+    transition: all 0.5s ease-in;
+}
+
+button{
+    margin-top: 35px;
+    justify-items:;
+}
+
+.card{
+    box-shadow: 3px 3px 5px ;
+}

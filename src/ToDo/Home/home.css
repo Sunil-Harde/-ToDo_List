@@ -1,0 +1,36 @@
+.title,
+.discription {
+    margin-left: 15%;
+}
+
+.all {
+    margin-top: 4rem;
+}
+
+.model {
+    background: #00000086;
+    height: 100vh;
+}
+
+.aaa {
+    margin-bottom: 2.2rem;
+}
+
+@media (max-width:576px) {
+
+    .your-task {
+        text-align: center;
+        margin-left: 20%;
+    }
+}
+
+@media (max-width:766px) {
+
+    .buttons {
+        margin-top: -1rem;
+    }
+
+    .all {
+        margin-top: 5rem;
+    }
+}
