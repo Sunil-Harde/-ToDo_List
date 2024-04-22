@@ -45,8 +45,12 @@ function Login(props) {
             })
             .catch((error) => {
                 console.error("error" + error)
-                if ("Firebase: Error (auth/invalid-credential)." === error.massage || "Firebase: Error (auth/invalid-email)." === error.message) {
+                if ("Firebase: Error (auth/invalid-credential)." === error.massage || "Firebase: Error (auth/invalid-email)." === error.message ) {
                     alert("Please Enter Valid Email or Password")
+                }
+
+                else if ("Firebase: Error (auth/invalid-credential)."=== error.message){
+                    alert("Email Not Found")
                 }
 
                 else if ("Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)" === error.massage) {
@@ -83,7 +87,7 @@ function Login(props) {
                             </div>
 
 
-                            <button className='btn btn-dark ' onClick={erroeHandal}>Login</button>
+                            <button className='btn btn-primary  ' onClick={erroeHandal}>Login</button>
                             <p className='mt-2'>Your Not  <Link to="../register">Registor</Link></p>
                         </div>
                     </div>

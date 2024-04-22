@@ -6,11 +6,9 @@ import Register from './register/register'
 import Home from './Home/Home'
 import Me from './ME/Me'
 
-function tran() {
+function Tran() {
     return (
-        <BrowserRouter>
             <div>
-            
                 <Routes>
                     <Route path="/" element={<First />} />
                     <Route path="/Login" element={<Login />} />
@@ -20,8 +18,7 @@ function tran() {
                     <Route path="/Me" element={<Me />} />
                 </Routes>
             </div>
-        </BrowserRouter>
     )
 }
 
-export default tran
+export default Tran

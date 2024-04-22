@@ -7,6 +7,9 @@ import Nav1 from '../Navbar/NavBar'
 import './home.css'
 import { auth } from '../Firebase'
 import { onAuthStateChanged } from 'firebase/auth'
+import Modal from 'react-modal' // Changed from "Model" to "Modal"
+
+Modal.setAppElement('#root');
 
 function Home() {
 
@@ -35,7 +38,7 @@ function Home() {
                     id: doc.id,
                     title: doc.data().title,
                     description: doc.data().description,
-                    timestamp: doc.data().timestamp
+                    timestamp: doc.data().timestamp 
                 }));
                 setShow(tempData);
             } catch (error) {
@@ -61,23 +64,11 @@ function Home() {
 
 
 
-
+console.log(user);
     const submit = async () => {
 
 
-        const doc = await addDoc(collection(db, `${user}`), {
-            title: title,
-            description: data,
-            timestamp: serverTimestamp()
-        });
-
-
-
-        if (data && title) {
-            setPupop(false)
-        }
-
-        else {
+        if (!data || !title) {
 
             if (!title) {
                 setError((e) => {
@@ -90,6 +81,17 @@ function Home() {
                     return ({ ...e, dataError: "Please Enter Description" })
                 })
             }
+        }
+
+        else {
+
+            const doc = await addDoc(collection(db, `${user}`), {
+                title: title,
+                description: data,
+                timestamp: serverTimestamp()
+            });
+            setPupop(false)
+
         }
 
     }
@@ -124,13 +126,13 @@ function Home() {
                     </div>
 
 
-                    <div className='buttons d-flex justify-content-center align-items-center ms-3'>
+                    <div className='buttons aaa d-flex justify-content-center align-items-center ms-3'>
 
                         <div className='me-3 '>
-                            <btton className='btn btn-primary' onClick={() => { setPupop(true) }}>Add Task</btton>
+                            <button className='btn btn-primary ' onClick={() => { setPupop(true) }}>Add Task</button>
                         </div>
 
-                        <div className='aaa'>
+                        <div className=''>
                             <Dropdown>
                                 <Dropdown.Toggle id="dropdown-basic">All Task</Dropdown.Toggle>
 
@@ -146,9 +148,9 @@ function Home() {
                 </div>
 
 
-                    <Model isOpen={pupop} onRequestClose={() => setPupop(false)} className="model" >
-                {
-                            user ? (
+                <Model isOpen={pupop} onRequestClose={() => setPupop(false)} className="model" >
+                    {
+                        user ? (
 
                             <div className=" d-flex align-items-center justify-content-center flex-column model">
 
@@ -174,20 +176,21 @@ function Home() {
                                     </div>
 
                                     <div className="card-footer mt-3 d-flex justify-content-center align-items-center " >
-                                        <button className='btn btn-success card-button' style={{ margin: "10px", marginLeft: "36px" }} onClick={submit}>Submit</button>
+                                        <button className='btn btn-success' style={{ margin: "10px", marginLeft: "36px" }} onClick={submit}>Submit</button>
                                         <button className='btn btn-danger me-5 card-button' style={{ margin: "10px", marginLeft: "28px" }} onClick={() => setPupop(false)}>Close</button>
                                     </div>
 
                                 </div>
                             </div>
-                    ) : (
-                        <div className='d-flex justify-content-center align-items-center min-vh-100'>
-                                <div className="card">
-                                    <div className='card-body fw-bold'>Please Login</div>
+                        ) : (
+                            <div className='d-flex justify-content-center align-items-center min-vh-100 '>
+                                <div className="card d-flex justify-content-center align-items-center p-3 " style={{ height: "150px" }}>
+                                    <div className='card-body fw-bold text-center'>Please Login</div>
+                                    <button className='btn  card-button  fw-bold' onClick={() => setPupop(false)}>Close</button>
                                 </div>
-                        </div>
-                    )
-                }
+                            </div>
+                        )
+                    }
                 </Model>
             </div>
 
@@ -215,6 +218,11 @@ function Home() {
 
             </div>
 
+            <button className='card1 btn z-3 fw-bold text-light overflow-hidden'>
+                <span className='z-3'>click</span>
+                <div className='bg z-3'></div>
+                click
+            </button>
         </div>
 
 

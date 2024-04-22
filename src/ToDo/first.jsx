@@ -16,7 +16,7 @@ function first() {
 
                         <h1 className=''>Schedule Your</h1>
                         <h1>Daily Task With</h1>
-                        <h1 className='text-success'>ToDo List</h1>
+                        <h1 className='text-success'><span className='text-danger'>To</span>Do List</h1>
 
                         <div className="d-flex gap-4 ">
                             <Link to="./Login"><button className='btn btn-primary '> Login</button></Link>
