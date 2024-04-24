@@ -36,7 +36,7 @@ function NavBar() {
 
                 <Container fluid>
 
-                    <Navbar.Brand>
+                    <Navbar.Brand href='/'>
                         Brand text
                     </Navbar.Brand>
 

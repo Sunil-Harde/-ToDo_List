@@ -20,7 +20,7 @@ function first() {
 
                         <div className="d-flex gap-4 ">
                             <Link to="./Login"><button className='btn btn-primary '> Login</button></Link>
-                            <Link to="./register"><button className=' btn btn-danger'> SingIn</button></Link>                        
+                            <Link to="./Register"><button className=' btn btn-danger'> SingIn</button></Link>                        
                         </div>
                     </div>
                 </div>

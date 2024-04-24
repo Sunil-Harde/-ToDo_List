@@ -38,7 +38,7 @@ function Home() {
                     id: doc.id,
                     title: doc.data().title,
                     description: doc.data().description,
-                    timestamp: doc.data().timestamp 
+                    timestamp: doc.data().timestamp
                 }));
                 setShow(tempData);
             } catch (error) {
@@ -48,11 +48,11 @@ function Home() {
 
         fetchData();
 
+
         const login = () => onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user.email)
             }
-
             else {
                 setUser(null)
             }
@@ -64,7 +64,7 @@ function Home() {
 
 
 
-console.log(user);
+    // console.log(user);
     const submit = async () => {
 
 
@@ -129,13 +129,19 @@ console.log(user);
                     <div className='buttons aaa d-flex justify-content-center align-items-center ms-3'>
 
                         <div className='me-3 '>
-                            <button className='btn btn-primary ' onClick={() => { setPupop(true) }}>Add Task</button>
+
+                            <button className='button-hover btn btn-primary fw-bold text-light overflow-hidden' onClick={() => { setPupop(true) }}>
+                                <p>Add Task</p>
+                                <div className='bg'></div>
+                            </button>
+
                         </div>
 
                         <div className=''>
-                            <Dropdown>
-                                <Dropdown.Toggle id="dropdown-basic">All Task</Dropdown.Toggle>
-
+                            <Dropdown >
+                                <Dropdown.Toggle id="dropdown-basic" className='button-hover btn-primary fw-bold text-light overflow-hidden '>All Task
+                                    <div className='bg'></div>
+                                </Dropdown.Toggle>
                                 <Dropdown.Menu>
                                     <Dropdown.Item eventKey="X">In-comepleteTask</Dropdown.Item>
                                     <Dropdown.Item eventKey="X">Complete Task</Dropdown.Item>
@@ -218,11 +224,7 @@ console.log(user);
 
             </div>
 
-            <button className='card1 btn z-3 fw-bold text-light overflow-hidden'>
-                <span className='z-3'>click</span>
-                <div className='bg z-3'></div>
-                click
-            </button>
+
         </div>
 
 

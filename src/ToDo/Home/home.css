@@ -52,31 +52,37 @@
     }
 }
 
-
-.card1{
-    height: 50px;
-    width: 10rem;
-    background: #ff0202;
-    margin-left: 35rem;
-    /* overflow: hidden; */
-    z-index: index 2;
+#button-hover-div{
+    margin-top: -1rem;
 }
+
+.button-hover{
+    height: 40px;
+    width: 7rem;
+    background: #3568b6;
+    border: .1rem solid black;
+    transition: 1.2s;
+}
+
 
 .bg{
     background: #000;
-    height: 200px;
-    width: 16rem;
+    height: 250px;
+    width: 20rem;
     transform: rotatez(120deg);
     transition: 1s;
     margin-top: -4rem;
-    margin-left: 6.7rem;
+    margin-left: 1.5rem;
+    z-index: 100;
 }
 
-.card1:hover{
-    background: red;
+.button-hover:hover{
+    background: #38a19c;
+    border: .1rem solid black;
 }
 
-.card1:hover .bg{
-    transform: rotatez(60deg);
-    margin-left: .1rem;
+.button-hover:hover .bg{
+    transform: rotatez(300deg);
+    margin-left: -20.5rem;
+    margin-top: -7.5rem;
 } 

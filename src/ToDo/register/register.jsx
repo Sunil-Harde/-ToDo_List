@@ -63,7 +63,12 @@ function Register() {
                                 <input type="password" className='form-control' onChange={(event) => setValue({ ...value, password: event.target.value })} placeholder='Password' required />
                             </div>
 
-                            <button className='btn btn-success mt-3' onClick={submit}>Register</button>
+                            <div className='d-flex justify-content-center align-items-center ' id='button-hover-div'>
+                                <button className='button-hover btn fw-bold text-light overflow-hidden ' onClick={submit}>
+                                    <p>Register</p>
+                                    <div className='bg '></div>
+                                </button>
+                            </div>
                             <p className='text-light'>Already have an account? <Link to="../Login" className='fs-5'>Login</Link></p>
                         </Form>
                     </div>
