@@ -4,14 +4,15 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../Firebase';
 import Nav1 from '../Navbar/NavBar'
 import './login.css'
-import Home from '../Home/Home';
 
 
-function Login(props) {
+
+function Login() {
+
 
     const history = useNavigate();
 
-    const [notFound, setNotFound] = useState(false)
+    const [notFound, setNotFound] = useState(true)
     const [value, setValue] = useState({
         email: "",
         password: ""
@@ -47,26 +48,23 @@ function Login(props) {
                 })
 
                 .catch((error) => {
-
                     console.error(error);
-
-                    if (erroeHandal.userEmptyInput === "" || erroeHandal.passwordEmptyInput === "") {
                         if (error.code === 'auth/invalid-email' || error.code === 'auth/wrong-password') {
                             alert('Please enter a valid email or password');
+                            setNotFound(false);
                         }
 
-                        else if (error.code === 'auth/user-not-found' || error.message === 'auth/invalid-credential') {
-                            setNotFound(true);
+                        else if (error.code === 'auth/invalid-credential') {
+                            setNotFound(false);
                         }
 
                         else if (error.code === 'auth/too-many-requests') {
+                            setNotFound(false);
                             alert(
                                 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'
                             );
                         }
-                    }
                 });
-
 
         } catch (error) {
             console.error(error);
@@ -76,7 +74,13 @@ function Login(props) {
     }
     console.log(notFound)
 
-    console.log(notFound);
+    !notFound && (
+
+        setTimeout(() => {
+            setNotFound(true);
+
+        }, 5000)
+    )
 
 
     return (
@@ -88,11 +92,10 @@ function Login(props) {
                         <h3>Login</h3>
                     </div>
 
-
+                    
                     {
 
-                        notFound && (
-
+                        !notFound && (
 
                             <div className='popup position-absolute   ms-5 text-danger' style={{ top: "2.4rem" }}>
                                 <div className="text-center">
@@ -100,9 +103,9 @@ function Login(props) {
                                 </div>
                             </div>
 
-
                         )
                     }
+
 
 
                     <div className='card-body'>

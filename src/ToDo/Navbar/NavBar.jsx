@@ -11,7 +11,7 @@ function NavBar() {
     useEffect(() => {
         const login = () => onAuthStateChanged(auth, (user) => {
             if (user) {
-                setUser(user.email)
+                setUser(user.displayName)
             }
             else {
                 setUser(null)

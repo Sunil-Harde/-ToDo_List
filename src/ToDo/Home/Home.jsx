@@ -44,6 +44,10 @@ function Home() {
             } catch (error) {
                 console.error("Error fetching data: ", error);
             }
+
+            onAuthStateChanged(auth,(user)=>{
+                console.log(user);
+            })
         };
 
         fetchData();
@@ -58,9 +62,13 @@ function Home() {
             }
         })
 
+
         return () => login()
 
     }, [db, user]);
+
+
+    console.log(user);
 
 
 
@@ -104,10 +112,11 @@ function Home() {
             setShow(prevState => prevState.filter(item => item.id !== id));
         } catch (error) {
             console.error("Error deleting document: ", error);
+
         }
     }
 
-
+    console.log(user)
     return (
         <div>
             <Nav1 />
@@ -122,9 +131,9 @@ function Home() {
 
                         <div className=''>
                             <input type="text-area" className='form-control' placeholder='search Task' />
+
                         </div>
                     </div>
-
 
                     <div className='buttons aaa d-flex justify-content-center align-items-center ms-3'>
 
@@ -142,8 +151,8 @@ function Home() {
                                 <Dropdown.Toggle id="dropdown-basic" className='button-hover btn-primary fw-bold text-light overflow-hidden '>All Task
                                     <div className='bg'></div>
                                 </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item eventKey="X">In-comepleteTask</Dropdown.Item>
+                                <Dropdown.Menu style={{ background: "#23c2ba" }}>
+                                    <Dropdown.Item eventKey="X" >In-comepleteTask</Dropdown.Item>
                                     <Dropdown.Item eventKey="X">Complete Task</Dropdown.Item>
                                 </Dropdown.Menu>
 
@@ -156,7 +165,16 @@ function Home() {
 
                 <Model isOpen={pupop} onRequestClose={() => setPupop(false)} className="model" >
                     {
-                        user ? (
+                        !user ? (
+
+                            <div className='d-flex justify-content-center align-items-center min-vh-100 '>
+                                <div className="card d-flex justify-content-center align-items-center p-3 " style={{ height: "150px" }}>
+                                    <div className='card-body fw-bold text-center'>Please Login</div>
+                                    <button className='btn  card-button  fw-bold' onClick={() => setPupop(false)}>Close</button>
+                                </div>
+                            </div>
+                        ) : (
+
 
                             <div className=" d-flex align-items-center justify-content-center flex-column model">
 
@@ -187,18 +205,11 @@ function Home() {
                                     </div>
 
                                 </div>
-                            </div>
-                        ) : (
-                            <div className='d-flex justify-content-center align-items-center min-vh-100 '>
-                                <div className="card d-flex justify-content-center align-items-center p-3 " style={{ height: "150px" }}>
-                                    <div className='card-body fw-bold text-center'>Please Login</div>
-                                    <button className='btn  card-button  fw-bold' onClick={() => setPupop(false)}>Close</button>
-                                </div>
-                            </div>
+                            </div >
                         )
                     }
-                </Model>
-            </div>
+                </Model >
+            </div >
 
             <div className='container'>
 
@@ -225,7 +236,7 @@ function Home() {
             </div>
 
 
-        </div>
+        </div >
 
 
     )
