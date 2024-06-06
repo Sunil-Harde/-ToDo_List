@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Spinner from 'react-bootstrap/Spinner'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../Firebase';
 import Nav1 from '../Navbar/NavBar'
@@ -12,6 +13,7 @@ function Login() {
 
     const history = useNavigate();
 
+    const [buttonDisable, setButtonDisable] = useState(false)
     const [notFound, setNotFound] = useState(true)
     const [value, setValue] = useState({
         email: "",
@@ -41,33 +43,41 @@ function Login() {
             })
         }
 
-        try {
-            signInWithEmailAndPassword(auth, value.email, value.password)
-                .then(() => {
-                    history('/home');
-                })
+        if (value.email && value.password) {
+            setButtonDisable(true)
 
-                .catch((error) => {
-                    console.error(error);
+            try {
+                signInWithEmailAndPassword(auth, value.email, value.password)
+                    .then(() => {
+                        history('/home');
+                    })
+
+                    .catch((error) => {
+                        console.error(error);
                         if (error.code === 'auth/invalid-email' || error.code === 'auth/wrong-password') {
                             alert('Please enter a valid email or password');
-                            setNotFound(false);
+                            setButtonDisable(false)
+                            
                         }
-
+                        
                         else if (error.code === 'auth/invalid-credential') {
+                            setButtonDisable(false)
                             setNotFound(false);
                         }
-
+                        
                         else if (error.code === 'auth/too-many-requests') {
-                            setNotFound(false);
+                            setButtonDisable(false)
                             alert(
                                 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'
                             );
                         }
-                });
+                    });
 
-        } catch (error) {
-            console.error(error);
+            }
+
+            catch (error) {
+                console.error(error);
+            }
         }
 
 
@@ -92,7 +102,7 @@ function Login() {
                         <h3>Login</h3>
                     </div>
 
-                    
+
                     {
 
                         !notFound && (
@@ -126,7 +136,17 @@ function Login() {
 
                             <div className='d-flex justify-content-center align-items-center'>
                                 <button className='button-hover btn fw-bold text-light overflow-hidden ' onClick={erroeHandal}>
-                                    <p>Login</p>
+                                    {
+                                        !buttonDisable ? (
+                                            <p>Login</p>
+                                        ) : (
+
+                                            <Spinner animation="border" role="status" style={{ height: "15px", width: "15px" }}>
+                                                <span className="visually-hidden" >Loading...</span>
+                                            </Spinner>
+                                        )
+
+                                    }
                                     <div className='bg '></div>
                                 </button>
                             </div>
@@ -135,8 +155,6 @@ function Login() {
                     </div>
                 </div>
             </div>
-
-
         </div>
     )
 }

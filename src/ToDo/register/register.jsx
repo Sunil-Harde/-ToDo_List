@@ -1,17 +1,21 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../Firebase'
 import Nav1 from '../Navbar/NavBar'
+import Spinner from 'react-bootstrap/Spinner';
+
 
 function Register() {
+
+    const [buttonDisable, setButtonDisable] = useState(false)
     const [value, setValue] = useState({
         firstname: "",
         email: "",
         password: ""
     })
-
+    console.log(value.firstname);
 
     const history = useNavigate();
 
@@ -23,14 +27,21 @@ function Register() {
             return;
         }
 
+        setButtonDisable(true)
         createUserWithEmailAndPassword(auth, value.email, value.password)
             .then((res) => {
-                console.log(res, "authData")
                 history('/Home')
+                const user = res.user
+                updateProfile(user, {
+                    displayName: value.firstname
+                })
+                console.log(res, "authData")
             })
             .catch((error) => {
                 if ("Firebase: Error (auth/email-already-in-use)." === error.message) {
                     alert("Email id Alredy Exist ")
+                    setButtonDisable(false)
+
                 }
             })
 
@@ -64,9 +75,21 @@ function Register() {
                             </div>
 
                             <div className='d-flex justify-content-center align-items-center ' id='button-hover-div'>
-                                <button className='button-hover btn fw-bold text-light overflow-hidden ' onClick={submit}>
-                                    <p>Register</p>
-                                    <div className='bg '></div>
+                                <button className='button-hover btn fw-bold text-light overflow-hidden ' onClick={submit} >
+
+                                    {
+                                        !buttonDisable ? (
+                                            <p>Register</p>
+                                        ) : (
+
+                                            <Spinner animation="border" role="status" style={{ height: "15px", width: "15px" }}>
+                                                <span className="visually-hidden" >Loading...</span>
+                                            </Spinner>
+                                        )
+
+                                    }
+
+                                    <div className='bg'></div>
                                 </button>
                             </div>
                             <p className='text-light'>Already have an account? <Link to="../Login" className='fs-5'>Login</Link></p>

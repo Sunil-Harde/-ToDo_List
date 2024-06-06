@@ -14,6 +14,7 @@ Modal.setAppElement('#root');
 function Home() {
 
     const [user, setUser] = useState(null)
+    const [userName, setUsername] = useState(null)
     const [title, setTitle] = useState("")
     const [data, setData] = useState("")
     const [pupop, setPupop] = useState(false)
@@ -44,10 +45,6 @@ function Home() {
             } catch (error) {
                 console.error("Error fetching data: ", error);
             }
-
-            onAuthStateChanged(auth,(user)=>{
-                console.log(user);
-            })
         };
 
         fetchData();
@@ -56,6 +53,7 @@ function Home() {
         const login = () => onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user.email)
+                setUsername(user.displayName)
             }
             else {
                 setUser(null)
@@ -165,16 +163,7 @@ function Home() {
 
                 <Model isOpen={pupop} onRequestClose={() => setPupop(false)} className="model" >
                     {
-                        !user ? (
-
-                            <div className='d-flex justify-content-center align-items-center min-vh-100 '>
-                                <div className="card d-flex justify-content-center align-items-center p-3 " style={{ height: "150px" }}>
-                                    <div className='card-body fw-bold text-center'>Please Login</div>
-                                    <button className='btn  card-button  fw-bold' onClick={() => setPupop(false)}>Close</button>
-                                </div>
-                            </div>
-                        ) : (
-
+                        userName ? (
 
                             <div className=" d-flex align-items-center justify-content-center flex-column model">
 
@@ -206,6 +195,15 @@ function Home() {
 
                                 </div>
                             </div >
+                        ) : (
+
+                            <div className='d-flex justify-content-center align-items-center min-vh-100 '>
+                                <div className="card d-flex justify-content-center align-items-center p-3 " style={{ height: "150px" }}>
+                                    <div className='card-body fw-bold text-center'>Please Login</div>
+                                    <button className='btn  card-button  fw-bold' onClick={() => setPupop(false)}>Close</button>
+                                </div>
+                            </div>
+
                         )
                     }
                 </Model >
@@ -216,15 +214,15 @@ function Home() {
                 <div className='row'>
                     {show.map((item, index) => (
                         <div className='col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center align-content-center' key={index}>
-                            <div className="card ">
+                            <div className="card  ">
                                 <div className="card-header">
                                     <h3>{item.title}</h3>
                                 </div>
                                 <div className="card-body">
-                                    <p>{item.description}</p>
+                                    <p style={{overflow: 'overlay', height: '78px'}}>{item.description}</p>
                                 </div>
                                 <div className="card-footer">
-                                    <button className="btn btn-success" style={{ margin: "2px" }}>Completed</button>
+                                    <button className="btn btn-success ..." style={{ margin: "2px" }}>Completed</button>
                                     <button className="btn btn-secondary" style={{ margin: "2px" }}>Edit</button>
                                     <button className="btn btn-danger" style={{ margin: "2px" }} onClick={() => handleDelete(item.id)}>Delete</button>
                                 </div>

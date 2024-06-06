@@ -11,9 +11,12 @@
 
 button{
     margin-top: 35px;
-    justify-items:;
 }
 
 .card{
     box-shadow: 3px 3px 5px ;
+}
+
+button:disabled{ 
+    /* margin-top: 10rem; */
 }
