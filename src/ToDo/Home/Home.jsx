@@ -8,6 +8,8 @@ import './home.css'
 import { auth } from '../Firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import Modal from 'react-modal' // Changed from "Model" to "Modal"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckDouble, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 Modal.setAppElement('#root');
 
@@ -28,8 +30,6 @@ function Home() {
 
     const history = useNavigate()
     const db = getFirestore()
-
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -61,7 +61,7 @@ function Home() {
         })
 
 
-        return () => login()
+        login()
 
     }, [db, user]);
 
@@ -91,13 +91,18 @@ function Home() {
 
         else {
 
+            try{
             const doc = await addDoc(collection(db, `${user}`), {
                 title: title,
                 description: data,
                 timestamp: serverTimestamp()
             });
             setPupop(false)
+        }
 
+        catch(error) {
+            console.error("Error fetching data: ", error);
+        }
         }
 
     }
@@ -107,7 +112,7 @@ function Home() {
     const handleDelete = async (id) => {
         try {
             await deleteDoc(doc(db, `${user}`, id));
-            setShow(prevState => prevState.filter(item => item.id !== id));
+            setShow((prevState) => prevState.filter((item) => item.id !== id));
         } catch (error) {
             console.error("Error deleting document: ", error);
 
@@ -213,8 +218,8 @@ function Home() {
 
                 <div className='row'>
                     {show.map((item, index) => (
-                        <div className='col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center align-content-center' key={index}>
-                            <div className="card  ">
+                        <div className='col-lg-4 col-md-6 mb-4 d-flex justify-content-center align-content-center' key={index}>
+                            <div className="card card-home">
                                 <div className="card-header">
                                     <h3>{item.title}</h3>
                                 </div>
@@ -222,9 +227,17 @@ function Home() {
                                     <p style={{overflow: 'overlay', height: '78px'}}>{item.description}</p>
                                 </div>
                                 <div className="card-footer">
-                                    <button className="btn btn-success ..." style={{ margin: "2px" }}>Completed</button>
-                                    <button className="btn btn-secondary" style={{ margin: "2px" }}>Edit</button>
-                                    <button className="btn btn-danger" style={{ margin: "2px" }} onClick={() => handleDelete(item.id)}>Delete</button>
+                                    <button className="btn btn-success ..." style={{ margin: "2px" }}>
+                                        <FontAwesomeIcon icon={faCheckDouble}/>
+                                    </button>
+                                    <button className="btn btn-secondary" style={{ margin: "2px" }}>
+                                        <FontAwesomeIcon icon={faEdit}/>
+                                        
+                                    </button>
+                                    <button className="btn btn-danger" style={{ margin: "2px" }} onClick={() => handleDelete(item.id)}>
+                                        <FontAwesomeIcon icon={faTrash}/>
+                                        
+                                    </button>
                                 </div>
                             </div>
                         </div>

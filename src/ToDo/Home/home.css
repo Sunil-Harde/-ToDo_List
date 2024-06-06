@@ -33,6 +33,11 @@
     background: #ff0000;
 }
 
+.card-home{
+    min-width: 19rem;
+    max-width: 19rem;
+}
+
 @media (max-width:576px) {
 
     .your-task {
@@ -49,6 +54,10 @@
 
     .all {
         margin-top: 5rem;
+    }
+
+    .card-home{
+        width: 250rem; 
     }
 }
 

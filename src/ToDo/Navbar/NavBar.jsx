@@ -57,7 +57,7 @@ function NavBar() {
                             ) : (
                                 <div className='d-flex justify-content-center align-items-center '>
                                     <Nav.Link href="/Login">Login</Nav.Link>
-                                    <Link href="./Register">Register</Link>
+                                    <Nav.Link href="/Register">Register</Nav.Link>
                                 </div>
                             )
                         }
