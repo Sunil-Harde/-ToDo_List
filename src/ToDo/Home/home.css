@@ -1,4 +1,4 @@
-*{
+* {
     letter-spacing: .10rem;
 }
 
@@ -20,23 +20,61 @@
     margin-bottom: 2.2rem;
 }
 
-.card-button{
+.card-button {
     transition: .7s;
     background: rgb(180, 9, 9);
-    margin-top:1px;   
+    margin-top: 1px;
     width: 70%;
 }
 
 
-.card-button:hover{
+.card-button:hover {
     margin-bottom: 3px;
     background: #ff0000;
 }
 
-.card-home{
-    min-width: 19rem;
-    max-width: 19rem;
+.card-home {
+    min-width: 21rem;
+    max-width: 21rem;
 }
+
+.spin{
+    margin-top: 8rem;
+    margin-left: 3rem;
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    border: 5px solid black ;
+    border-top: 5px solid transparent;
+    animation: ani 1s linear infinite;
+}
+
+@keyframes ani{
+    to{
+        transform: rotate(360deg);
+    }
+}
+@media (max-width:1200px) {
+
+    .card-home {
+        min-width: 19rem;
+        max-width: 19rem;
+    }
+}
+
+@media (max-width:766px) {
+
+    .card-home {
+        min-width: 80%;
+        max-width: 80%;
+    }
+
+    .spin{
+        height: 3rem;
+        width: 3rem;
+    }
+}
+
 
 @media (max-width:576px) {
 
@@ -56,16 +94,13 @@
         margin-top: 5rem;
     }
 
-    .card-home{
-        width: 250rem; 
-    }
 }
 
-#button-hover-div{
+#button-hover-div {
     margin-top: -1rem;
 }
 
-.button-hover{
+.button-hover {
     height: 40px;
     width: 7rem;
     background: #0d6efd;
@@ -74,7 +109,7 @@
 }
 
 
-.bg{
+.bg {
     background: #000;
     height: 250px;
     width: 20rem;
@@ -85,13 +120,13 @@
     z-index: 100;
 }
 
-.button-hover:hover{
+.button-hover:hover {
     background: #23c2ba;
     border: .1rem solid black;
 }
 
-.button-hover:hover .bg{
+.button-hover:hover .bg {
     transform: rotatez(300deg);
     margin-left: -20.5rem;
     margin-top: -7.5rem;
-} 
+}

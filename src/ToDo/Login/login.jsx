@@ -57,7 +57,6 @@ function Login() {
                         if (error.code === 'auth/invalid-email' || error.code === 'auth/wrong-password') {
                             alert('Please enter a valid email or password');
                             setButtonDisable(false)
-                            
                         }
                         
                         else if (error.code === 'auth/invalid-credential') {
@@ -107,9 +106,9 @@ function Login() {
 
                         !notFound && (
 
-                            <div className='popup position-absolute   ms-5 text-danger' style={{ top: "2.4rem" }}>
-                                <div className="text-center">
-                                    <h6 className='text-center'>Email Not Registor  ❌ </h6>
+                            <div className='popup position-absolute ms-4 text-danger' style={{ top: "2.4rem" }}>
+                                <div className="text-center" style={{ transform:"10s"}}>
+                                    <h6 className='text-center'>Email Not Registor OR PassWord incorrect ❌ </h6>
                                 </div>
                             </div>
 

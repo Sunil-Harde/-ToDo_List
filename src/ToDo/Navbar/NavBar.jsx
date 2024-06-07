@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap'
 import { auth } from '../Firebase'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
+import './NavBar.css'
+
 
 
 function NavBar() {
@@ -42,18 +44,18 @@ function NavBar() {
                         Brand text
                     </Navbar.Brand>
 
-                    <Nav >
-                        <Nav.Link href="/Home">Home</Nav.Link>
+                    <Nav className='Nav'>
+                        <NavLink to="/Home" className="NavLink">Home</NavLink>
                         {
                             user ? (
                                 <div className='d-flex justify-content-center align-items-center '>
-                                    <Nav.Link >{user}</Nav.Link>
-                                    <Nav.Link onClick={signout}>Logout</Nav.Link>
+                                    <NavLink className="NavLink">{user}</NavLink>
+                                    <NavLink className="NavLink" onClick={signout}>Logout</NavLink>
                                 </div>
                             ) : (
                                 <div className='d-flex justify-content-center align-items-center '>
-                                    <Nav.Link href="/Login">Login</Nav.Link>
-                                    <Nav.Link href="/Register">Register</Nav.Link>
+                                    <NavLink className="NavLink" to="/Login">Login</NavLink>
+                                    <NavLink className="NavLink" to="/Register">Register</NavLink>
                                 </div>
                             )
                         }
