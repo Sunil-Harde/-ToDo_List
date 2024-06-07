@@ -2,10 +2,10 @@
     margin-left: 2rem;
     text-decoration: none;
     color: white;
-    transition: 2s;
+    transition: .8s;
 }
 
-.NavLink::after {
+/* .NavLink::after {
     content: '';
     background: #a50000;
     height: 0.5rem;
@@ -15,10 +15,11 @@
     display: none;
     }
     
+     */
     
-    
-    .NavLink:hover:after {
+    .NavLink:hover {
         /* height: 0.5rem; */
         right: 11rem;
         display: block;
+        color: aqua;
 }
