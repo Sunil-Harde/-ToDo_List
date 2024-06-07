@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap'
 import { auth } from '../Firebase'
-import { useNavigate,Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 
 function NavBar() {
@@ -16,23 +16,19 @@ function NavBar() {
         const login = () => auth.onAuthStateChanged((user) => {
             if (user) {
                 setUser(user.displayName)
-                console.log("name=",user.displayName)
+                console.log("name=", user.displayName)
             }
             else {
                 setUser(null)
             }
         })
-
-        return () => login()
+        login();
     })
 
-    const signout= ()=>{
+    const signout = () => {
         history('/Login')
         signOut(auth)
     }
-
-
-
 
 
     return (

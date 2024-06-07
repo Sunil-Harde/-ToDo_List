@@ -4,8 +4,7 @@ import { Form } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../Firebase'
 import Nav1 from '../Navbar/NavBar'
-import Spinner from 'react-bootstrap/Spinner';
-
+import Spinner from '../Component/Spinner/Spinners'
 
 function Register() {
 
@@ -82,9 +81,7 @@ function Register() {
                                             <p>Register</p>
                                         ) : (
 
-                                            <Spinner animation="border" role="status" style={{ height: "15px", width: "15px" }}>
-                                                <span className="visually-hidden" >Loading...</span>
-                                            </Spinner>
+                                            <Spinner/>
                                         )
 
                                     }

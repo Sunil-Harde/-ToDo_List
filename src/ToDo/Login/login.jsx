@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Spinner from 'react-bootstrap/Spinner'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../Firebase';
 import Nav1 from '../Navbar/NavBar'
 import './login.css'
+import Spinner from '../Component/Spinner/Spinners'
 
 
 
@@ -141,9 +141,7 @@ function Login() {
                                             <p>Login</p>
                                         ) : (
 
-                                            <Spinner animation="border" role="status" style={{ height: "15px", width: "15px" }}>
-                                                <span className="visually-hidden" >Loading...</span>
-                                            </Spinner>
+                                            <Spinner/>
                                         )
 
                                     }

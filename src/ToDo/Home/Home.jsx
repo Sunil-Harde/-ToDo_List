@@ -236,8 +236,10 @@ function Home() {
                                     </button>
                                     <button className="btn btn-danger" style={{ margin: "2px" }} onClick={() => handleDelete(item.id)}>
                                         <FontAwesomeIcon icon={faTrash}/>
-                                        
                                     </button>
+
+                                    <h3>{item.timestamp}</h3>
+
                                 </div>
                             </div>
                         </div>
