@@ -238,7 +238,6 @@ function Home() {
                                         <FontAwesomeIcon icon={faTrash}/>
                                     </button>
 
-                                    <h3>{item.timestamp}</h3>
 
                                 </div>
                             </div>
