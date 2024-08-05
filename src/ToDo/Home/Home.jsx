@@ -9,7 +9,10 @@ import Modal from 'react-modal' // Changed from "Model" to "Modal"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckDouble, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Nav1 from '../Navbar/NavBar'
+import Pop from '../Component/Model/Pop'
 import Spinner from "react-bootstrap/Spinner";
+import Data from './Data/Data'
+
 import './home.css'
 
 Modal.setAppElement('#root');
@@ -20,8 +23,9 @@ function Home() {
     const [userName, setUsername] = useState(null)
     const [title, setTitle] = useState("")
     const [data, setData] = useState("")
-    const [pupop, setPupop] = useState(false)
+    const [popUp, setPopUp] = useState(false)
     const [show, setShow] = useState([])
+    const [spin, setSping] = useState(true)
     const [error, setError] = useState({
         titleError: "",
         dataError: ""
@@ -29,27 +33,11 @@ function Home() {
 
 
 
+
     const history = useNavigate()
     const db = getFirestore()
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const querySnapshot = await getDocs(collection(db, `${user}`));
-                const tempData = querySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    title: doc.data().title,
-                    description: doc.data().description,
-                    timestamp: doc.data().timestamp
-                }));
-                setShow(tempData);
-            } catch (error) {
-                console.error("Error fetching data: ", error);
-            }
-        };
-
-        fetchData();
-
 
         const login = () => onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -60,7 +48,6 @@ function Home() {
                 setUser(null)
             }
         })
-
 
         login()
 
@@ -98,7 +85,7 @@ function Home() {
                     description: data,
                     timestamp: serverTimestamp()
                 });
-                setPupop(false)
+                setPopUp(false)
             }
 
             catch (error) {
@@ -108,6 +95,9 @@ function Home() {
 
     }
 
+    // setTimeout(() => {
+    //     setSping(false)
+    // }, 5000);
 
 
     const handleDelete = async (id) => {
@@ -143,7 +133,7 @@ function Home() {
 
                         <div className='me-3 '>
 
-                            <button className='button-hover btn btn-primary fw-bold text-light overflow-hidden' onClick={() => { setPupop(true) }}>
+                            <button className='button-hover btn btn-primary fw-bold text-light overflow-hidden' onClick={() => { setPopUp(true) }}>
                                 <p>Add Task</p>
                                 <div className='bg'></div>
                             </button>
@@ -167,7 +157,7 @@ function Home() {
                 </div>
 
 
-                <Model isOpen={pupop} onRequestClose={() => setPupop(false)} className="model" >
+                <Model isOpen={popUp} onRequestClose={() => setPopUp(false)} className="model" >
                     {
                         userName ? (
 
@@ -196,7 +186,7 @@ function Home() {
 
                                     <div className="card-footer mt-3 d-flex justify-content-center align-items-center " >
                                         <button className='btn btn-success' style={{ margin: "10px", marginLeft: "36px" }} onClick={submit}>Submit</button>
-                                        <button className='btn btn-danger me-5 card-button' style={{ margin: "10px", marginLeft: "28px" }} onClick={() => setPupop(false)}>Close</button>
+                                        <button className='btn btn-danger me-5 card-button' style={{ margin: "10px", marginLeft: "28px" }} onClick={() => setPopUp(false)}>Close</button>
                                     </div>
 
                                 </div>
@@ -206,58 +196,19 @@ function Home() {
                             <div className='d-flex justify-content-center align-items-center min-vh-100 '>
                                 <div className="card d-flex justify-content-center align-items-center p-3 " style={{ height: "150px" }}>
                                     <div className='card-body fw-bold text-center'>Please Login</div>
-                                    <button className='btn  card-button  fw-bold' onClick={() => setPupop(false)}>Close</button>
+                                    <button className='btn  card-button  fw-bold' onClick={() => setPopUp(false)}>Close</button>
                                 </div>
                             </div>
 
                         )
                     }
                 </Model >
+
             </div >
 
             <div className='container'>
-
-                {
-                    userName ? (
-
-
-                        <div className='row'>
-                            {show.map((item, index) => (
-                                <div className='col-lg-4 col-md-6 mb-4 d-flex justify-content-center align-content-center' key={index}>
-                                    <div className="card card-home">
-                                        <div className="card-header">
-                                            <h3>{item.title}</h3>
-                                        </div>
-                                        <div className="card-body">
-                                            <p style={{ overflow: 'overlay', height: '78px' }}>{item.description}</p>
-                                        </div>
-                                        <div className="card-footer">
-                                            <button className="btn btn-success ..." style={{ margin: "2px" }}>
-                                                <FontAwesomeIcon icon={faCheckDouble} />
-                                            </button>
-                                            <button className="btn btn-secondary" style={{ margin: "2px" }}>
-                                                <FontAwesomeIcon icon={faEdit} />
-
-                                            </button>
-                                            <button className="btn btn-danger" style={{ margin: "2px" }} onClick={() => handleDelete(item.id)}>
-                                                <FontAwesomeIcon icon={faTrash} />
-                                            </button>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-
-                        <div className='d-flex align-items-center justify-content-center max-vh-100' >
-                            <p className='spin'></p>
-                        </div>
-                    )
-                }
+                <Data userName={userName} db={db} user={user} />
             </div>
-
 
         </div >
 

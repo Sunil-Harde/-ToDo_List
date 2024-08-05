@@ -1,25 +1,60 @@
+.Nav{
+ display: flex;   
+ /* flex-direction: column; */
+}
+
+
 .NavLink {
     margin-left: 2rem;
     text-decoration: none;
     color: white;
+    position: relative;
     transition: .8s;
 }
 
-/* .NavLink::after {
+.NavLink:hover {
+    color: aqua;
+}
+
+.NavLink::after {
     content: '';
     background: #a50000;
-    height: 0.5rem;
-    width: 5rem;
+    height: 0.2rem;
+    width: 0;
     position: absolute;
-    bottom: 0;
-    display: none;
+    bottom:-.3rem;
+    left: -.5rem;
+    transition: .8s;
+}
+
+
+
+.NavLink:hover::after {
+    width: 4rem;
+}
+
+.NavLink:nth-child(2):hover::after {
+    width: 5.2rem;
+}
+
+
+@media (max-width:450px) {
+
+    .Brand{
+        display: none;
     }
-    
-     */
-    
-    .NavLink:hover {
-        /* height: 0.5rem; */
-        right: 11rem;
-        display: block;
-        color: aqua;
+    .Nav {
+        /* position: absolute; */
+        flex-direction: column ; 
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        /* top: -10rem; */
+    }
+
+    .Nav1{
+        display: flex;
+        flex-direction: column;
+        /* background: #000; */
+    }
 }
