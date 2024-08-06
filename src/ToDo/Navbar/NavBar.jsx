@@ -93,7 +93,6 @@ function NavBar() {
                                     </div>
                                 )
                             }
-                            {/* <div className="NavLink">Contact</div> */}
                         </div>
 
                         <div className="lines d-flex d-md-none flex-column" onClick={() => setNavClick(!navClick)} >
