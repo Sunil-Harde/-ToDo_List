@@ -90,7 +90,7 @@
     .nav-items {
         position: fixed;
         right: -39rem;
-        top: -1rem;
+        top: 0rem;
         background: #000;
         color: white;
         width: 15rem;
@@ -100,9 +100,8 @@
         overflow: hidden;
     }
 
-    .nav-items .NavLink {
-        margin-left: 5rem;
-
+    .nav-item  {
+        margin-top: 8rem !important;
     }
 
     .nav-click .nav-items {
@@ -129,14 +128,6 @@
         transform: rotate(140deg);
     }
 
-}
-
-@media (max-width:570px) {
-
-
-    .nav-items {
-        top: 0rem;
-    }
 }
 
 

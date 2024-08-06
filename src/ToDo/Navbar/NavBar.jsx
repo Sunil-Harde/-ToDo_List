@@ -75,24 +75,26 @@ function NavBar() {
 
                         </div>
 
-                        <div className="nav-items mt-sm-5 mt-md-2 d-flex flex-column flex-md-row  align-items-md-center  justify-content-center gap-4 bg-dark ">
-                            <div className="    ">
-                                <NavLink to="/Home" className="NavLink">Home</NavLink>
-                            </div>
+                        <div className='nav-items mt-md-2 d-flex flex-column flex-md-row  align-items-center  justify-content-md-center  gap-4 bg-dark'>
+                            <div className="nav-item d-flex flex-column flex-md-row  align-items-center  justify-content-md-center  gap-4 bg-dark ">
+                                <div className="">
+                                    <NavLink to="/Home" className="NavLink">Home</NavLink>
+                                </div>
 
-                            {
-                                user ? (
-                                    <div className='d-flex flex-column flex-md-row  align-items-md-center mt-1  justify-content-center gap-4 '>
-                                        <NavLink className="NavLink">{user}</NavLink>
-                                        <NavLink className="NavLink" onClick={signout}>Logout</NavLink>
-                                    </div>
-                                ) : (
-                                    <div className='d-flex flex-column flex-md-row  align-items-md-center  justify-content-center gap-4 '>
-                                        <NavLink className="NavLink" to="/Register">Register</NavLink>
-                                        <NavLink className="NavLink" to="/Login">Login</NavLink>
-                                    </div>
-                                )
-                            }
+                                {
+                                    user ? (
+                                        <div className='d-flex flex-column flex-md-row  align-items-md-center mt-1  justify-content-center gap-4 '>
+                                            <NavLink className="NavLink">{user}</NavLink>
+                                            <NavLink className="NavLink" onClick={signout}>Logout</NavLink>
+                                        </div>
+                                    ) : (
+                                        <div className='d-flex flex-column flex-md-row  align-items-md-center  justify-content-center gap-4 '>
+                                            <NavLink className="NavLink" to="/Register">Register</NavLink>
+                                            <NavLink className="NavLink" to="/Login">Login</NavLink>
+                                        </div>
+                                    )
+                                }
+                            </div>
                         </div>
 
                         <div className="lines d-flex d-md-none flex-column" onClick={() => setNavClick(!navClick)} >
