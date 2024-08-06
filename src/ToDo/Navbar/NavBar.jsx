@@ -76,7 +76,7 @@ function NavBar() {
                         </div>
 
                         <div className='nav-items mt-md-2 d-flex flex-column flex-md-row  align-items-center  justify-content-md-center  gap-4 bg-dark'>
-                            <div className="nav-item d-flex flex-column flex-md-row  align-items-center  justify-content-md-center  gap-4 bg-dark ">
+                            <div className="nav-item d-flex flex-column flex-md-row  align-items-md-center  justify-content-md-center  gap-4 bg-dark ">
                                 <div className="">
                                     <NavLink to="/Home" className="NavLink">Home</NavLink>
                                 </div>

@@ -98,7 +98,7 @@ function Data(props) {
                 ) : (
 
                     <div className='d-flex flex-column align-items-center justify-content-center max-vh-100' >
-                        <img src={Nologin} alt="" className='' width={'400'} height={'350'} />
+                        <img src={Nologin} alt="" className='' width={'300'} height={'350'} />
                         <h4>Please login</h4>
                     </div>
 
