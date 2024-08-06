@@ -90,7 +90,7 @@ function Data(props) {
                                 ))
                             ) : (
                                 <div className='d-flex justify-content-center align-items-center'>
-                                    <img src={NodataImg} alt="" className='mt-5' width={'300'} height={'300'} />
+                                    <img src={NodataImg} alt="" className='' width={'300'} height={'300'} />
                                 </div>
                             )
                         }
