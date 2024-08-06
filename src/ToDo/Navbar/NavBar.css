@@ -100,7 +100,7 @@
         overflow: hidden;
     }
 
-    .nav-items p {
+    .nav-items .NavLink {
         margin-left: 5rem;
 
     }
