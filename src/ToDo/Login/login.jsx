@@ -54,16 +54,20 @@ function Login() {
 
                     .catch((error) => {
                         console.error(error);
-                        if (error.code === 'auth/invalid-email' || error.code === 'auth/wrong-password') {
-                            alert('Please enter a valid email or password');
+                        if (error.code === 'auth/invalid-email') {
+                            alert('Please enter a valid email');
                             setButtonDisable(false)
                         }
-                        
+                        if (error.code === 'auth/wrong-password') {
+                            alert('Please enter a valid password');
+                            setButtonDisable(false)
+                        }
+
                         else if (error.code === 'auth/invalid-credential') {
                             setButtonDisable(false)
                             setNotFound(false);
                         }
-                        
+
                         else if (error.code === 'auth/too-many-requests') {
                             setButtonDisable(false)
                             alert(
@@ -107,7 +111,7 @@ function Login() {
                         !notFound && (
 
                             <div className='popup position-absolute ms-4 text-danger' style={{ top: "2.4rem" }}>
-                                <div className="text-center" style={{ transform:"10s"}}>
+                                <div className="text-center" style={{ transform: "10s" }}>
                                     <h6 className='text-center'>Email Not Registor OR PassWord incorrect ❌ </h6>
                                 </div>
                             </div>
@@ -140,7 +144,7 @@ function Login() {
                                             <p>Login</p>
                                         ) : (
 
-                                            <Spinner/>
+                                            <Spinner />
                                         )
 
                                     }

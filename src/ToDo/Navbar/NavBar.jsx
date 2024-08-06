@@ -11,7 +11,7 @@ function NavBar() {
 
     const history = useNavigate();
 
-
+    const [navClick, setNavClick] = useState(true)
     const [user, setUser] = useState(null)
 
     useEffect(() => {
@@ -36,7 +36,7 @@ function NavBar() {
     return (
         <div>
 
-            <Navbar bg='dark' data-bs-theme="dark" fixed='top'>
+            {/* <Navbar bg='dark' data-bs-theme="dark" fixed='top'>
 
                 <Container fluid>
 
@@ -63,7 +63,50 @@ function NavBar() {
 
                 </Container>
 
-            </Navbar>
+            </Navbar> */}
+
+            <div>
+                <div className=''>
+
+                    <div className={navClick ? "nav shadow-sm d-flex fixed-top px-5 bg-dark align-items-center justify-content-between fixed-top text-light" : " nav-click shadow-sm d-flex fixed-top px-5 bg-dark align-items-center justify-content-between fixed-top text-light"}>
+
+                        <div className="logo d-flex align-items-center justify-content-center ">
+                            <NavLink className="NavLink" to='/'>To<span className='text-info'>Do</span></NavLink>
+
+                        </div>
+
+                        <div className="nav-items mt-sm-5 mt-md-2 d-flex flex-column flex-md-row  align-items-md-center  justify-content-center gap-4 bg-dark ">
+                            <div className="    ">
+                                <NavLink to="/Home" className="NavLink">Home</NavLink>
+                            </div>
+
+                            {
+                                user ? (
+                                    <div className='d-flex flex-column flex-md-row  align-items-md-center mt-1  justify-content-center gap-4 '>
+                                        <NavLink className="NavLink">{user}</NavLink>
+                                        <NavLink className="NavLink" onClick={signout}>Logout</NavLink>
+                                    </div>
+                                ) : (
+                                    <div className='d-flex flex-column flex-md-row  align-items-md-center  justify-content-center gap-4 '>
+                                        <NavLink className="NavLink" to="/Register">Register</NavLink>
+                                        <NavLink className="NavLink" to="/Login">Login</NavLink>
+                                    </div>
+                                )
+                            }
+                            {/* <div className="NavLink">Contact</div> */}
+                        </div>
+
+                        <div className="lines d-flex d-md-none flex-column" onClick={() => setNavClick(!navClick)} >
+                            <div className="line"></div>
+                            <div className="line"></div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

@@ -6,8 +6,6 @@ import Model from 'react-modal'
 import { auth } from '../Firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import Modal from 'react-modal' // Changed from "Model" to "Modal"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckDouble, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Nav1 from '../Navbar/NavBar'
 import Pop from '../Component/Model/Pop'
 import Spinner from "react-bootstrap/Spinner";
@@ -95,26 +93,13 @@ function Home() {
 
     }
 
-    // setTimeout(() => {
-    //     setSping(false)
-    // }, 5000);
-
-
-    const handleDelete = async (id) => {
-        try {
-            await deleteDoc(doc(db, `${user}`, id));
-            setShow((prevState) => prevState.filter((item) => item.id !== id));
-        } catch (error) {
-            console.error("Error deleting document: ", error);
-
-        }
-    }
 
     console.log(user)
+    
     return (
         <div>
             <Nav1 />
-            <div className='all d-flex flex-column align-items-center justify-content-center container-fluid'>
+            <div className='all  d-flex flex-column align-items-center justify-content-center container-fluid'>
 
                 <div className='drop d-md-flex justify-content-center align-items-center'>
 

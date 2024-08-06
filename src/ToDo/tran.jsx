@@ -8,16 +8,16 @@ import Me from './ME/Me'
 
 function Tran() {
     return (
-            <div>
-                <Routes>
-                    <Route path="/" element={<First />} />
-                    <Route path="/Login" element={<Login />} />
-                    <Route path="/Register" element={<Register />} />
-                    <Route path="/Register" element={<Register />} />
-                    <Route path="/Home" element={<Home />} />
-                    <Route path="/Me" element={<Me />} />
-                </Routes>
-            </div>
+        <div>
+            <Routes>
+                <Route path="/" element={<First />} />
+                <Route path="/Login" element={<Login />} />
+                <Route path="/Register" element={<Register />} />
+                <Route path="/Register" element={<Register />} />
+                <Route path="/Home" element={<Home />} />
+                <Route path="/Me" element={<Me />} />
+            </Routes>
+        </div>
     )
 }
 

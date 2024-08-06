@@ -1,11 +1,11 @@
-.Nav{
- display: flex;   
- /* flex-direction: column; */
+.Nav {
+    display: flex;
+    /* flex-direction: column; */
 }
 
 
 .NavLink {
-    margin-left: 2rem;
+    font-size: 19px;
     text-decoration: none;
     color: white;
     position: relative;
@@ -22,7 +22,7 @@
     height: 0.2rem;
     width: 0;
     position: absolute;
-    bottom:-.3rem;
+    bottom: -.3rem;
     left: -.5rem;
     transition: .8s;
 }
@@ -30,31 +30,118 @@
 
 
 .NavLink:hover::after {
-    width: 4rem;
+    width: 120%;
 }
 
 .NavLink:nth-child(2):hover::after {
     width: 5.2rem;
 }
 
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    outline: none;
+    font-family: "Rrowdies", sans-serif;
+}
 
-@media (max-width:450px) {
 
-    .Brand{
-        display: none;
+/* Nvabar Start */
+
+.nav,
+.nav-click {
+    height: 70px;
+    font-size: 1.5rem;
+    /* margin-bottom: 1rem; */
+}
+
+.logo .NavLink span {
+    font-family: "canveat", cursive;
+}
+
+
+.line {
+    background: white;
+    height: .2rem;
+    width: 3rem;
+    margin-bottom: .5rem;
+}
+
+.nav-items .NavLink {
+    cursor: pointer;
+    transition: 1s;
+}
+
+
+.nav-items p:hover {
+    color: aqua;
+}
+
+/* Navbar End */
+
+
+@media (max-width:770px) {
+
+    .nav,
+    .nav-click {
+        height: 60px;
     }
-    .Nav {
-        /* position: absolute; */
-        flex-direction: column ; 
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        /* top: -10rem; */
+
+    .nav-items {
+        position: fixed;
+        right: -29rem;
+        top: -1rem;
+        background: #000;
+        color: white;
+        width: 15rem;
+        height: 100vh;
+        transform: rotate(50deg);
+        transition: 1s;
+        overflow: hidden;
     }
 
-    .Nav1{
+    .nav-items p {
+        margin-left: 5rem;
+
+    }
+
+    .nav-click .nav-items {
+        transform: rotate(0deg);
+        right: 0rem;
+    }
+
+
+
+    .lines {
         display: flex;
-        flex-direction: column;
-        /* background: #000; */
+        z-index: 2;
+    }
+
+    .line {
+        transition: 1s;
+    }
+
+    .nav-click .lines :nth-child(1) {
+        transform: rotate(-140deg);
+    }
+
+    .nav-click .lines :nth-child(2) {
+        transform: rotate(140deg);
+    }
+
+}
+
+@media (max-width:570px) {
+
+
+    .nav-items {
+        top: 0rem;
     }
 }
+
+
+
+/* 
+git commit -m "Navbar Addedt"
+git branch -M main
+git push -u origin main */

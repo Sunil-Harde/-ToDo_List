@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { getFirestore, collection, getDocs, deleteDoc, doc } from 'firebase/firestore'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckDouble, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import Spinner from "react-bootstrap/Spinner";
-
+import NodataImg from '../../Png/Empty_Data.svg'
+import Nologin from '../../Png/Nologin.svg'
 function Data(props) {
 
     const [show, setShow] = useState([])
-    const [spin, setSping] = useState(false)
+    const [spin, setSping] = useState(true)
 
 
     const db = getFirestore()
@@ -23,6 +23,7 @@ function Data(props) {
                     timestamp: doc.data().timestamp
                 }));
                 setShow(tempData);
+                setSping(false)
             } catch (error) {
                 console.error("Error fetching data: ", error);
             }
@@ -30,7 +31,6 @@ function Data(props) {
 
         fetchData();
     })
-
 
     const handleDelete = async (id) => {
         try {
@@ -40,61 +40,69 @@ function Data(props) {
         } catch (error) {
             console.error("Error deleting document: ", error);
         }
-
-
     }
 
+    if (spin) {
+        return (
+            <div className='d-flex align-items-center justify-content-center max-vh-100' >
+                <p className='spin'></p>
+            </div>
 
-
-
-
+        )
+    }
     return (
         <div>
             {
                 props.userName ? (
 
                     <div className='row'>
-                        {show.map((item, index) => (
-                            <div className='col-lg-4 col-md-6 mb-4 d-flex justify-content-center align-content-center' key={index}>
-                                <div className="card card-home">
-                                    <div className="card-header">
-                                        <h4>{item.title}</h4>
+                        {
+
+                            show.length > 0 ? (
+                                show.map((item, index) => (
+                                    <div className='col-lg-4 col-md-6 mb-4 d-flex justify-content-center align-content-center' key={index}>
+                                        <div className="card card-home">
+                                            <div className="card-header">
+                                                <h4>{item.title}</h4>
+                                            </div>
+
+                                            <div className="card-body">
+                                                <p style={{ overflow: 'overlay', height: '78px' }}>{item.description}</p>
+                                            </div>
+
+                                            <div className="card-footer">
+
+                                                <button className="btn btn-success ..." style={{ margin: "2px" }}>
+                                                    <FontAwesomeIcon icon={faCheckDouble} />
+                                                </button>
+
+                                                <button className="btn btn-secondary" style={{ margin: "2px" }}>
+                                                    <FontAwesomeIcon icon={faEdit} />
+                                                </button>
+
+                                                <button className="btn btn-danger" style={{ margin: "2px" }} onClick={() => handleDelete(item.id)}>
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </button>
+
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <div className="card-body">
-                                        <p style={{ overflow: 'overlay', height: '78px' }}>{item.description}</p>
-                                    </div>
-
-                                    <div className="card-footer">
-
-                                        <button className="btn btn-success ..." style={{ margin: "2px" }}>
-                                            <FontAwesomeIcon icon={faCheckDouble} />
-                                        </button>
-
-                                        <button className="btn btn-secondary" style={{ margin: "2px" }}>
-                                            <FontAwesomeIcon icon={faEdit} />
-                                        </button>
-
-                                        <button className="btn btn-danger" style={{ margin: "2px" }} onClick={() => handleDelete(item.id)}>                            
-                                                <FontAwesomeIcon icon={faTrash} />
-                                        </button>
-
-                                    </div>
+                                ))
+                            ) : (
+                                <div className='d-flex justify-content-center align-items-center'>
+                                    <img src={NodataImg} alt="" className='mt-5' width={'300'} height={'300'} />
                                 </div>
-                            </div>
-                        ))}
+                            )
+                        }
                     </div>
                 ) : (
 
-                    spin ? (
-                        <div className='d-flex align-items-center justify-content-center max-vh-100' >
-                            <p className='spin'></p>
-                        </div>
-                    ) : (
-                        <div className='d-flex align-items-center justify-content-center max-vh-100' >
-                            <h3 className=''>Please Login</h3>
-                        </div>
-                    )
+                    <div className='d-flex flex-column align-items-center justify-content-center max-vh-100' >
+                        <img src={Nologin} alt="" className='mt-4' width={'400'} height={'350'} />
+                        <h4>Please login</h4>
+                    </div>
+
+
                 )
             }
         </div>
